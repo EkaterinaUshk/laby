@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp38
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double x, x1, dx, e, dx1 = 0, y = 0;
+            int i;
+            x = 0.1;
+            x1 = 0.9;
+            dx = 0.1;
+            e = 0.0001;
+            Console.WriteLine("**************************");
+            Console.WriteLine("          Таблица       ");
+            Console.WriteLine("**************************");
+            Console.WriteLine("    x   *     y     *  i");
+            Console.WriteLine("**************************");
+            for (; x <= x1; x += dx)
+            {
+                i = 1;
+                y = x;
+                dx1 = Math.Pow(x, 3) / 6;
+                for (i = 1; dx1 > e; i++)
+                {
+                    double m = Convert.ToDouble(i);
+                    y += dx1;
+                    dx1 *= Math.Pow(x * (2 * m + 1), 2) / ((2 * m + 2) * (2 * m + 3));
+                }
+                Console.WriteLine("  {0:0.00}  *  {1:0.00000}  *  {2}", x, y, i);
+                Console.WriteLine("{0:0.00000}",Math.Asin(x)); //Проверка на правильность решения
+                Console.WriteLine("**************************");
+            }
+            Console.ReadKey();
+        }
+    }
+}
